@@ -1,22 +1,16 @@
 from behave import given, when, then
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
 from pages.practice_form_page import PracticeFormPage
 from pages.browser_windows_page import BrowserWindowsPage
 from pages.web_tables_page import WebTablesPage
 from pages.progress_bar_page import ProgressBarPage
-from selenium.webdriver.common.by import By
 from pages.sortable_page import SortablePage
+from selenium.webdriver.common.by import By
 import os, random, time
 
 # ---------- CONTEXTO GERAL ----------
 
 @given("que estou na página inicial do DemoQA")
 def step_impl(context):
-    service = Service(ChromeDriverManager().install())
-    context.driver = webdriver.Chrome(service=service)
-    context.driver.maximize_window()
     context.driver.get("https://demoqa.com/")
     time.sleep(1)
 
@@ -192,4 +186,3 @@ def step_impl(context):
     assert actual_order == expected_order, f"A lista não está na ordem correta: {actual_order}"
     print("Lista validada:", actual_order)
     context.driver.quit()
-

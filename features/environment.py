@@ -2,6 +2,8 @@ import uuid
 import time
 from utils.api_client import ApiClient
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
 
 def before_scenario(context, scenario):
     # ------------------ API ------------------
@@ -44,18 +46,17 @@ def before_scenario(context, scenario):
         time.sleep(1)  # garante que o POST foi processado
 
     # ------------------ UI ------------------
-    # Inicializar driver apenas para cenários com tag 'ui'
     if "ui" in scenario.tags:
         options = webdriver.ChromeOptions()
         options.add_argument("--start-maximized")
         options.add_argument("--disable-infobars")
         options.add_argument("--disable-notifications")
-        context.driver = webdriver.Chrome(options=options)
+        service = Service(ChromeDriverManager().install())
+        context.driver = webdriver.Chrome(service=service, options=options)
 
 def after_scenario(context, scenario):
-    # Fechar navegador se estiver aberto
     if hasattr(context, "driver"):
         try:
             context.driver.quit()
         except Exception:
-            pass  # garante que não falhe se o driver já estiver fechado
+            pass
