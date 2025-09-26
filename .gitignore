@@ -1,0 +1,25 @@
+# Byte-compiled / Python artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+.env/
+.env.*
+
+# Editor / IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Reports
+reports/
+allure-results/
+screenshot/
+
+# System files
+.DS_Store
+Thumbs.db

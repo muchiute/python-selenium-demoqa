@@ -1,0 +1,7 @@
+selenium
+behave
+pytest
+requests
+python-dotenv
+webdriver-manager
+allure-behave
