@@ -136,4 +136,3 @@ def step_impl(context):
     assert "9781449331818" in rented_isbns
     assert "9781449325862" in rented_isbns
     assert len(rented_isbns) >= 2
-    
